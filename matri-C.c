@@ -1,4 +1,4 @@
-#include "matrix.h"
+#include "matri-C.h"
 
 void matLoad(double **A, matSize size, const char* filename) {
     FILE* file = fopen(filename, "r");
