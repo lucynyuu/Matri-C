@@ -1,5 +1,5 @@
-#ifndef matrix
-#define matrix
+#ifndef matri-C
+#define matri-C
 #include <stdio.h>
 #include <stdlib.h>
 
