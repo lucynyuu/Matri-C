@@ -25,16 +25,31 @@ void matfprint(matrix A, const char* filename);
 // Allocate memory that a matrix will occupie
 double** matAllocate(int rows, int cols);
 
+// Reallocates memory for a matrix
+void matReallocate(matrix A, int rows, int cols);
+
 // Frees dynamically allocated matrix
 matrix matFree(matrix A);
 
 // Initialize a given square matrix A into a unit matrix
 void matUnit(matrix A);
 
-// Invert a square matrix using Gauss Jordan algorithm
+// Invert a square matrix
 void matInvert(matrix A, matrix I);
 
 // Multiples two matrices A and B
 matrix matMul(matrix A, matrix B);
+
+// Sets all entries of a matrix to zero
+void matZero(matrix A);
+
+// Subtracts one matrix from another
+matrix matSub(matrix A, matrix B);
+
+// Adds one matrix to another
+matrix matAdd(matrix A, matrix B);
+
+// Scales a matrix by a scalar
+matrix matScale(matrix A, int k);
 
 #endif

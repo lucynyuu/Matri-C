@@ -58,6 +58,15 @@ double** matAllocate(int rows, int cols) {
     return A;
 }
 
+void matReallocate(matrix A, int rows, int cols) {
+    free(A.mat);
+    A.mat=(double **)malloc(rows*sizeof(double *));
+    for(size_t i=0;i<rows;i++)
+        A.mat[i]=(double *)malloc(cols*sizeof(double));
+    A.rows = rows;
+    A.cols = cols;
+}
+
 matrix matFree(matrix A) {
     free(A.mat);
 }
@@ -103,6 +112,44 @@ matrix matMul(matrix A, matrix B) {
             for (size_t k = 0; k < B.rows; k++) {
                 result.mat[i][j] += A.mat[i][k] * B.mat[k][j];
             }
+        }
+    }
+    return result;
+}
+
+void matZero(matrix A) {
+    for (size_t i = 0; i < A.rows; i++) {
+        for (size_t e = 0; e < A.cols; e++) {
+            A.mat[i][e] = 0;
+        }
+    }
+}
+
+matrix matSub(matrix A, matrix B) {
+    matrix result = matCreate(A.rows, B.cols);
+    for (size_t i = 0; i < A.rows; i++) {
+        for (size_t e = 0; e < A.cols; e++) {
+            result.mat[i][e] = A.mat[i][e] - B.mat[i][e];
+        }
+    }
+    return result;
+}
+
+matrix matAdd(matrix A, matrix B) {
+    matrix result = matCreate(A.rows, B.cols);
+    for (size_t i = 0; i < A.rows; i++) {
+        for (size_t e = 0; e < A.cols; e++) {
+            result.mat[i][e] = A.mat[i][e] + B.mat[i][e];
+        }
+    }
+    return result;
+}
+
+matrix matScale(matrix A, int k) {
+    matrix result = matCreate(A.rows, B.cols);
+    for (size_t i = 0; i < A.rows; i++) {
+        for (size_t e = 0; e < A.cols; e++) {
+            result.mat[i][e] = A.mat[i][e] * k;
         }
     }
     return result;
